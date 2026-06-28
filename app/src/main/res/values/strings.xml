@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Connectivity Checker</string>
+
+    <!-- Buttons -->
+    <string name="load_config">Load Config</string>
+    <string name="run_all">Run All</string>
+    <string name="run_check">Run this check</string>
+    <string name="add_check">Add Check</string>
+    <string name="more_options">More options</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
+
+    <!-- Menu -->
+    <string name="sample_config">Sample Config</string>
+    <string name="menu_export_yaml">Export YAML</string>
+    <string name="menu_vm_settings">VictoriaMetrics</string>
+
+    <!-- Form hints -->
+    <string name="hint_name">Check name</string>
+    <string name="hint_type">Type</string>
+    <string name="hint_host">Host / IP</string>
+    <string name="hint_port">Port</string>
+    <string name="hint_url">URL</string>
+    <string name="hint_method">Method</string>
+    <string name="hint_expected_code">Expected HTTP code</string>
+    <string name="hint_body">Request body</string>
+    <string name="hint_headers">Request headers</string>
+    <string name="hint_dns_server">DNS server IP</string>
+    <string name="hint_sni">SNI hostname</string>
+    <string name="hint_timeout">Timeout</string>
+    <string name="hint_interval">Interval</string>
+
+    <!-- Empty state -->
+    <string name="empty_hint">Load a YAML config or tap ＋ to add a check</string>
+</resources>

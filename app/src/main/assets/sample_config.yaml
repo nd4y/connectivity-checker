@@ -1,0 +1,103 @@
+checks:
+
+  # ── ICMP ───────────────────────────────────────────────────────────────────
+  - name: "Ping Google DNS"
+    type: icmp
+    host: 8.8.8.8
+    timeout: 3000
+    interval: 60          # run every 60 s automatically
+
+  - name: "Ping Cloudflare"
+    type: icmp
+    host: 1.1.1.1
+    timeout: 3000
+
+  # ── DNS ────────────────────────────────────────────────────────────────────
+  - name: "DNS system — google.com"
+    type: dns
+    host: google.com
+    timeout: 5000
+    interval: 120
+
+  - name: "DNS via Google 8.8.8.8"
+    type: dns
+    host: example.com
+    dns_server: 8.8.8.8
+    timeout: 4000
+
+  # ── HTTP ───────────────────────────────────────────────────────────────────
+  - name: "HTTP GET google.com"
+    type: http
+    url: https://www.google.com
+    method: GET
+    timeout: 10000
+    expected_code: 200
+    interval: 300
+
+  - name: "HTTP HEAD example.com"
+    type: http
+    url: https://example.com
+    method: HEAD
+    timeout: 5000
+    expected_code: 200
+
+  - name: "HTTP POST httpbin"
+    type: http
+    url: https://httpbin.org/post
+    method: POST
+    timeout: 15000
+    body: '{"hello": "world"}'
+    headers:
+      Content-Type: application/json
+    expected_code: 200
+
+  # ── TCP ────────────────────────────────────────────────────────────────────
+  - name: "TCP 443 google.com"
+    type: tcp
+    host: google.com
+    port: 443
+    timeout: 5000
+    interval: 120
+
+  - name: "TCP 80 example.com"
+    type: tcp
+    host: example.com
+    port: 80
+    timeout: 5000
+
+  # ── UDP ────────────────────────────────────────────────────────────────────
+  - name: "UDP DNS 8.8.8.8:53"
+    type: udp
+    host: 8.8.8.8
+    port: 53
+    timeout: 3000
+
+  - name: "UDP DNS 1.1.1.1:53"
+    type: udp
+    host: 1.1.1.1
+    port: 53
+    timeout: 3000
+
+  # ── TLS ────────────────────────────────────────────────────────────────────
+  - name: "TLS google.com:443"
+    type: tls
+    host: google.com
+    port: 443
+    sni: google.com        # default: same as host
+    timeout: 5000
+    interval: 3600         # check cert hourly
+
+  - name: "TLS custom SNI on IP"
+    type: tls
+    host: 142.250.185.46   # IP — bypasses DNS entirely
+    port: 443
+    sni: google.com        # SNI presented during TLS handshake
+    timeout: 5000
+
+  - name: "TLS internal service"
+    type: tls
+    host: 192.168.1.10
+    port: 8443
+    sni: myservice.internal
+    timeout: 5000
+    interval: 900

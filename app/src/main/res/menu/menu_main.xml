@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_vm"
+        android:title="@string/menu_vm_settings"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_export"
+        android:title="@string/menu_export_yaml"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_sample"
+        android:title="@string/sample_config"
+        app:showAsAction="never" />
+
+</menu>

@@ -1,0 +1,7 @@
+-keep class org.yaml.snakeyaml.** { *; }
+-keep class com.connectivity.checker.model.** { *; }
+-keep class com.connectivity.checker.metrics.PendingMetric { *; }
+-dontwarn org.yaml.snakeyaml.**
+-dontwarn okhttp3.**
+-dontwarn okio.**
+-dontwarn androidx.room.**
