@@ -10,8 +10,8 @@ The practical point is to look at the network through the client's eyes: from a 
 from a mobile carrier, from behind a VPN. What the server sees and what the phone sees often
 disagree.
 
-| A run of the check set | HTTP check results |
-|---|---|
+| A run of the check set                                       | HTTP check results                                              |
+| ------------------------------------------------------------ | --------------------------------------------------------------- |
 | ![The check list during a run](docs/screenshots/running.jpg) | ![HTTP checks with a failure](docs/screenshots/http-checks.jpg) |
 
 On the left, `Run All` in progress: the summary `48/59 passing • 2 failed • 9 running`, with a
@@ -101,26 +101,26 @@ as `Key: Value`. Changes land immediately in the auto-saved set and in **Export 
 
 ### Common fields
 
-| Field | Type | Default | Description |
-|---|---|---|---|
-| `name` | string | `Unnamed` | The name in the list and in the metric label |
-| `type` | string | **required** | `icmp` \| `dns` \| `http` \| `tcp` \| `udp` \| `tls` (case-insensitive) |
-| `timeout` | int | `5000` | Timeout in milliseconds |
-| `interval` | int | `0` | Auto-run period in seconds; `0` means manual only |
+| Field      | Type   | Default      | Description                                                             |
+| ---------- | ------ | ------------ | ----------------------------------------------------------------------- |
+| `name`     | string | `Unnamed`    | The name in the list and in the metric label                            |
+| `type`     | string | **required** | `icmp` \| `dns` \| `http` \| `tcp` \| `udp` \| `tls` (case-insensitive) |
+| `timeout`  | int    | `5000`       | Timeout in milliseconds                                                 |
+| `interval` | int    | `0`          | Auto-run period in seconds; `0` means manual only                       |
 
 ### Per-type fields
 
-| Field | Types | Description |
-|---|---|---|
-| `host` | icmp, dns, tcp, udp, tls | Host or IP |
-| `port` | tcp, udp, tls | Port; for `tls` it defaults to `443`, for `tcp`/`udp` it is required |
-| `url` | http | Full URL including the scheme |
-| `method` | http | `GET`, `HEAD`, `POST`; anything else is treated as `GET` |
-| `expected_code` | http | Expected HTTP code; a mismatch turns the check red |
-| `body` | http | Body for `POST` |
-| `headers` | http | A map of headers; `Content-Type` from it also sets the `POST` body type |
-| `dns_server` | dns | Resolver IP; without it the system DNS is used |
-| `sni` | tls | SNI in the ClientHello; defaults to `host` |
+| Field           | Types                    | Description                                                             |
+| --------------- | ------------------------ | ----------------------------------------------------------------------- |
+| `host`          | icmp, dns, tcp, udp, tls | Host or IP                                                              |
+| `port`          | tcp, udp, tls            | Port; for `tls` it defaults to `443`, for `tcp`/`udp` it is required    |
+| `url`           | http                     | Full URL including the scheme                                           |
+| `method`        | http                     | `GET`, `HEAD`, `POST`; anything else is treated as `GET`                |
+| `expected_code` | http                     | Expected HTTP code; a mismatch turns the check red                      |
+| `body`          | http                     | Body for `POST`                                                         |
+| `headers`       | http                     | A map of headers; `Content-Type` from it also sets the `POST` body type |
+| `dns_server`    | dns                      | Resolver IP; without it the system DNS is used                          |
+| `sni`           | tls                      | SNI in the ClientHello; defaults to `host`                              |
 
 An unknown `type` value, or a missing `type`, is a parse error — the app shows it in a snackbar and
 keeps the previous check set.
@@ -241,3 +241,7 @@ Compose is not used — the layouts are XML.
 4. If new config fields appeared, add them to `CheckConfig`, `YamlParser` and `YamlExporter` (all
    three, or the field will be lost on export), and to the `EditCheckBottomSheet` form.
 5. Add an example to `sample_config.yaml` and a row to the field table in this README.
+
+## Development standard
+
+This repository adopts version 0.4.0 of the shared development standard. Read the [English guide](docs/en/development-standard.md) or [Russian guide](docs/ru/development-standard.md). The local toolkit checks staged secrets, changed-file formatting and bilingual documentation before merge. Existing product CI remains in place. Adoption is in progress; product acceptance and legacy-document translation are recorded separately in .repo-policy.json.
